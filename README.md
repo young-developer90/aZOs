@@ -79,6 +79,5 @@ reboot
 - ✅ Boot + VGA + Keyboard + Persistent FS + Shell
 - 🔄 Scheduler, Virtual Terminals, Advanced Paging در حال توسعه
 
-**داداش اگه فیچر جدید بخوای بگو فوری اضافه می‌کنم.**
 
 Made for fun and learning OSDev 🚀
