@@ -1,6 +1,6 @@
 # aZOs - Advanced Zenith Operating System
 
-![aZOs Logo](https://github.com/young-developer90/aZOs/raw/main/logo.png)
+![aZOs Logo](https://github.com/young-developer90/aZOs/image.jpg)
 
 **یک سیستم عامل x86_64 واقعی از صفر**، نوشته شده با C++، Assembly.  
 بوت می‌کنه روی QEMU و سخت‌افزار واقعی از طریق GRUB2 + Multiboot2.
