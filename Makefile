@@ -7,7 +7,8 @@ CFLAGS = -m64 -ffreestanding -O2 -Wall -Wextra -fno-exceptions -fno-rtti -nostdl
 CPPFLAGS = $(CFLAGS) -fno-use-cxa-atexit
 LDFLAGS = -T linker.ld -nostdlib -z max-page-size=0x1000
 
-OBJS = boot/boot.o kernel/kernel.o kernel/vga.o
+OBJS = boot/boot.o kernel/kernel.o kernel/vga.o \
+       drivers/keyboard.o memory/heap.o
 
 all: aZOs.iso
 
@@ -17,6 +18,12 @@ boot/boot.o: boot/boot.asm
 kernel/%.o: kernel/%.cpp
 	$(CPP) $(CPPFLAGS) -c $< -o $@
 
+drivers/%.o: drivers/%.cpp
+	$(CPP) $(CPPFLAGS) -c $< -o $@
+
+memory/%.o: memory/%.cpp
+	$(CPP) $(CPPFLAGS) -c $< -o $@
+
 aZOs.bin: $(OBJS)
 	$(LD) $(LDFLAGS) -o $@ $^
 
@@ -24,7 +31,7 @@ aZOs.iso: aZOs.bin
 	mkdir -p iso/boot/grub
 	cp aZOs.bin iso/boot/
 	cp boot/grub.cfg iso/boot/grub/
-	grub-mkrescue -o $@ iso 2>/dev/null || echo "Install grub-mkrescue"
+	grub-mkrescue -o $@ iso 2>/dev/null || echo "Install grub-mkrescue for ISO"
 
 clean:
 	rm -rf *.o */*.o aZOs.bin aZOs.iso iso

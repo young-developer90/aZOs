@@ -1,4 +1,6 @@
 #include "vga.h"
+#include "../include/heap.h"
+#include "../include/keyboard.h"
 
 extern "C" void kmain() {
     VGA::clear();
@@ -10,7 +12,11 @@ extern "C" void kmain() {
     VGA::print("Booting in x86_64 long mode...\n", 0x07);
     VGA::print("Kernel loaded successfully!\n", 0x0A);
 
-    VGA::print("Basic VGA driver ready.\n", 0x0F);
+    Memory::init_heap();
+    Keyboard::init();
+
+    VGA::print("Heap and Keyboard drivers ready!\n", 0x0A);
+    VGA::print("Press any key... (basic VGA only for now)\n", 0x0F);
 
     while (true) {
         asm volatile("hlt");
